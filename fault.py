@@ -1,7 +1,7 @@
-
 import sys
 import random
 import math
+import time
 
 class ShareBlockInfo():
 	def __init__(self):
@@ -41,7 +41,7 @@ def simulate_overwrite_blocks(population_num_blocks, ratio_population_overwritte
 
 	population_num_blocks_overwritten = int(math.ceil(population_num_blocks * ratio_population_overwritten))
 	for i in range(0, population_num_blocks_overwritten):
-		rnd_block = random.randint(0, population_num_blocks_overwritten)	
+		rnd_block = random.randint(0, population_num_blocks_overwritten)
 		overwrite_block(file_blocks, rnd_block)
 
 	for file_block in file_blocks:
@@ -51,6 +51,7 @@ def simulate_overwrite_blocks(population_num_blocks, ratio_population_overwritte
 				num_overwritten+=1
 			if num_overwritten > n:
 				return 0
+		
 	return 1
 
 def engine(population_num_blocks, ratio_population_overwritten, file_size_blocks, n, k, iterations):
@@ -71,13 +72,13 @@ def main():
 	# TEST 0: VARIABLE - OVERWRITTEN RATIO
 	#
 
-	population_num_blocks = 10000 #2147483648
+	population_num_blocks = 1000000 #2147483648
 	file_size_blocks = 2048
 	n = 3
 	k = 6
-	iterations = 1000	
+	iterations = 30
 
-	for i in range(1, 10):
+	for i in range(1, 100, 5):
 		engine(population_num_blocks, i/100.0, file_size_blocks, n, k, iterations)
 
 
